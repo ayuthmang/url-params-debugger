@@ -11,7 +11,7 @@ const setting = {
 
 export function Editor() {
   const [input, setInput] = useState(url)
-  const [src, setSrc] = useState<null | Record<string, any>>(null)
+  const [src, setSrc] = useState<null | Record<string, unknown>>(null)
 
   useEffect(() => {
     try {
@@ -72,14 +72,14 @@ export function getParams(
     decodeURIComponent: false,
   }
 ) {
-  const params: Record<string, any> = {}
+  const params: Record<string, unknown> = {}
 
   searchParams.forEach(function (val, key) {
     if (params[key] !== undefined) {
       if (!Array.isArray(params[key])) {
         params[key] = [params[key]]
       }
-      params[key].push(val)
+      (params[key] as unknown[]).push(val)
     } else {
       params[key] = options.decodeURIComponent ? decodeURIComponent(val) : val
     }
