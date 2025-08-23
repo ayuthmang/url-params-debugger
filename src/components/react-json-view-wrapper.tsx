@@ -1,9 +1,11 @@
-"use client";
+import dynamic from "next/dynamic";
 
-import ReactJsonView from "react-json-view";
+const ReactJsonViewNoSSR = dynamic(() => import("react-json-view"), {
+  ssr: false,
+});
 
 export function ReactJsonWrapper(
-  props: React.ComponentProps<typeof ReactJsonView>
+  props: React.ComponentProps<typeof ReactJsonViewNoSSR>
 ) {
-  return <ReactJsonView {...props} />;
+  return <ReactJsonViewNoSSR {...props} />;
 }
